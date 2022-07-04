@@ -16,13 +16,4 @@ class Manager extends Employee {
     
 }
 
-// const role = {
-//     name: 'owen',
-//     email: 'email',
-//     id: '1',
-//     office: '7'
-// }
-// const manager = new Manager(role)
-
-// console.log(manager.constructor.name)
 module.exports = Manager;

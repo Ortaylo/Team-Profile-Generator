@@ -1,3 +1,4 @@
+// setting and importing variables
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Manager = require('./lib/Manager');
@@ -5,6 +6,8 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const team = [];
 const roleData = {};
+var teamHtml = '';
+// all questions for inquirer
 const questions = {
     nameQuestion: {
         type: 'input',
@@ -44,6 +47,7 @@ const questions = {
     }
 }
 
+//Function to create role
 async function createRole(role) {
 
     await inquirer.prompt(questions.nameQuestion).then((data) => {
@@ -59,7 +63,6 @@ async function createRole(role) {
         await inquirer.prompt(questions.officeQuestion).then((data) => {
             roleData.officeNumber = data.officeNumber;
             const manager = new Manager(roleData);
-            console.log(manager);
             manager.role = 'Manager';
             team.push(manager);
         })
@@ -67,7 +70,6 @@ async function createRole(role) {
         await inquirer.prompt(questions.githubQuestion).then((data) => {
             roleData.github = data.github;
             const engineer = new Engineer(roleData);
-            console.log(engineer);
             engineer.role = 'Engineer';
             team.push(engineer);
         })
@@ -75,14 +77,13 @@ async function createRole(role) {
         await inquirer.prompt(questions.schoolQuestion).then((data) => {
             roleData.school = data.school;
             const intern = new Intern(roleData);
-            console.log(intern);
             intern.role = 'Intern'
             team.push(intern);
         })
     }
     getRole()
 }
-
+//function to start loop and create a manager
 function getRole(tracker) {
     
     if (tracker == 0) {
@@ -90,10 +91,7 @@ function getRole(tracker) {
             createRole('Manager');
     } else {
         inquirer.prompt(questions.roleQuestion).then((data) => {
-            console.log(data)
             if(data.role == 'Finish') {
-                console.log('finshed');
-                console.log(team);
                 Finish(team);
                 return;
             } else{
@@ -105,17 +103,15 @@ function getRole(tracker) {
 
 }
 
-var teamHtml = '';
-
+// Ending function
 function Finish(team) {
+    // deleting html file
     fs.unlink('dist/index.html', (err) => {
         if (err){
             console.log(err)
-        }else {
-            console.log('file removed')
         }
     }) 
-
+    // creating the html string to render
     for(var i=0;i<team.length;i++) {
         let roleExtra;
         if (team[i].officeNumber){
@@ -160,13 +156,11 @@ function Finish(team) {
     </ul>
     </body>
     </html>`
+    //rendering html file
     fs.appendFile('dist/index.html', html ,error => {
         console.error(error)
     })
     
 }
-
-//createManager(tracker);
-
-
+// starting function
 getRole(0);
