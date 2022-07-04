@@ -3,7 +3,9 @@
 ## Description 
 a NodeJS app that lets you generate a team profile
 
-![screencapture-localhost-3001-notes-2022-05-08-21_42_42](https://user-images.githubusercontent.com/99422408/167326767-b4cea2cd-3cb6-43d1-aef4-3637ceba6dab.png)
+
+![screencapture-file-C-Users-owent-Coding-Challenges-week-10-Team-Profile-Generator-Develop-dist-index-html-2022-07-03-21_34_58](https://user-images.githubusercontent.com/99422408/177067207-08be5182-7a96-4213-bc01-694faf6aa00c.png)
+
 
 ## Table of contents
 
